@@ -1,1220 +1,412 @@
 <!DOCTYPE html>
-<html lang="hi-IN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOKAL AI — आपका AI मुनीम | Kirana Store Intelligence</title>
-<meta name="description" content="Voice-first AI for kirana stores. Say '50kg atta bik gaya' in Odia or Hindi — AI Munim updates your stock, prevents expiry loss, lists you on ONDC. Free pilot in Bhubaneswar.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>LokalAI — Ground Intelligence for India</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0B1437;
-  --navy-mid: #112060;
-  --navy-soft: #1A2E6E;
-  --saffron: #FF6B00;
-  --saffron-light: #FF8C38;
-  --saffron-glow: rgba(255,107,0,0.15);
-  --gold: #F5A623;
-  --gold-light: #FFD580;
-  --green-india: #138808;
-  --white: #FFFFFF;
-  --off-white: #F7F8FC;
-  --text-primary: #0B1437;
-  --text-secondary: #4A5578;
-  --text-muted: #8A93B2;
-  --border: rgba(11,20,55,0.1);
-  --border-light: rgba(255,255,255,0.12);
-  --card-bg: #FFFFFF;
-  --r-sm: 10px;
-  --r-md: 16px;
-  --r-lg: 24px;
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--ink:#0a0a08;
+--paper:#f5f2eb;
+--gold:#c9a84c;
+--gold-dim:#8a6e2f;
+--dim:#1a1a16;
+--mid:#2e2e28;
+--text-muted:#7a7a6e;
+--text-dim:#4a4a42;
+--border:#2a2a24;
+--serif:'Playfair Display',Georgia,serif;
+--sans:'DM Sans',sans-serif;
+--mono:'DM Mono',monospace;
 }
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 3rem;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid var(--border);background:rgba(10,10,8,0.92);backdrop-filter:blur(12px)}
+.nav-logo{font-family:var(--mono);font-size:13px;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--paper)}
+.nav-cta{font-family:var(--mono);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;padding:0.5rem 1.2rem;border:0.5px solid var(--gold);color:var(--gold);text-decoration:none;transition:all 0.3s}
+.nav-cta:hover{background:var(--gold);color:var(--ink)}
 
-body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background: var(--off-white);
-  color: var(--text-primary);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 6rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(201,168,76,0.06) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(201,168,76,0.04) 0%,transparent 50%)}
+.hero-grid{position:absolute;inset:0;opacity:0.03;background-image:linear-gradient(var(--paper) 1px,transparent 1px),linear-gradient(90deg,var(--paper) 1px,transparent 1px);background-size:60px 60px}
+.hero-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.hero-tag::before{content:'';display:block;width:40px;height:0.5px;background:var(--gold)}
+.hero h1{font-family:var(--serif);font-size:clamp(3rem,8vw,7rem);font-weight:400;line-height:1.05;max-width:800px;margin-bottom:2rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:15px;color:var(--text-muted);max-width:480px;line-height:1.8;margin-bottom:3rem;font-weight:300}
+.hero-actions{display:flex;align-items:center;gap:2rem}
+.btn-primary{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:0.9rem 2rem;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:500;transition:all 0.3s;display:inline-block}
+.btn-primary:hover{background:var(--paper)}
+.btn-ghost{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;display:flex;align-items:center;gap:0.5rem;transition:color 0.3s}
+.btn-ghost:hover{color:var(--paper)}
+.hero-scroll{position:absolute;bottom:3rem;right:3rem;font-family:var(--mono);font-size:10px;letter-spacing:0.15em;color:var(--text-dim);text-transform:uppercase;writing-mode:vertical-rl;display:flex;align-items:center;gap:1rem}
+.hero-scroll::after{content:'';display:block;width:0.5px;height:60px;background:var(--text-dim)}
 
-/* ═══════════════════════════════
-   GEOMETRIC BACKGROUND PATTERN
-═══════════════════════════════ */
-.geo-bg {
-  position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0;
-}
-.geo-circle {
-  position: absolute; border-radius: 50%;
-  border: 1px solid rgba(255,107,0,0.12);
-}
-.geo-dot {
-  position: absolute; width: 4px; height: 4px;
-  border-radius: 50%; background: rgba(255,107,0,0.25);
-}
+/* SECTION BASE */
+section{padding:8rem 3rem}
+.section-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:400;line-height:1.15;margin-bottom:1.5rem}
+.section-title em{font-style:italic;color:var(--gold)}
 
-/* ═══════════════════════════════
-   NAV
-═══════════════════════════════ */
-nav {
-  position: sticky; top: 0; z-index: 200;
-  background: rgba(11,20,55,0.97);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-light);
-  padding: 0 6%;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 68px;
-}
-.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.nav-logo-mark {
-  width: 38px; height: 38px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 800; font-size: 15px; color: #fff; letter-spacing: -0.5px;
-  position: relative; overflow: hidden;
-}
-.nav-logo-mark::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
-}
-.nav-wordmark { display: flex; flex-direction: column; }
-.nav-brand { font-size: 17px; font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1; }
-.nav-tagline { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1.5px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
-.nav-center { display: flex; align-items: center; gap: 32px; }
-.nav-center a { font-size: 14px; color: rgba(255,255,255,0.6); text-decoration: none; font-weight: 500; transition: color 0.2s; }
-.nav-center a:hover { color: #fff; }
-.nav-right { display: flex; align-items: center; gap: 12px; }
-.nav-pilot-badge {
-  background: rgba(255,107,0,0.15);
-  border: 1px solid rgba(255,107,0,0.3);
-  color: var(--saffron-light);
-  font-size: 11px; font-weight: 600;
-  padding: 5px 12px; border-radius: 20px;
-  font-family: 'JetBrains Mono', monospace;
-  display: flex; align-items: center; gap: 6px;
-}
-.live-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: #4ADE80;
-  animation: livepulse 2s infinite;
-}
-@keyframes livepulse {
-  0%,100% { opacity:1; box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
-  50% { opacity:0.7; box-shadow: 0 0 0 4px rgba(74,222,128,0); }
-}
-.nav-cta-btn {
-  background: var(--saffron);
-  color: #fff; border: none;
-  padding: 10px 22px; border-radius: 8px;
-  font-size: 14px; font-weight: 700;
-  cursor: pointer; text-decoration: none;
-  transition: all 0.2s; letter-spacing: -0.2px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.nav-cta-btn:hover { background: var(--saffron-light); transform: translateY(-1px); }
+/* PROBLEM */
+.problem{background:var(--dim);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;margin-top:4rem}
+.problem-text p{color:var(--text-muted);font-size:15px;margin-bottom:1.5rem;line-height:1.9}
+.problem-text p strong{color:var(--paper);font-weight:400}
+.problem-stats{display:grid;gap:0}
+.stat-row{padding:1.5rem 0;border-bottom:0.5px solid var(--border);display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center}
+.stat-row:first-child{border-top:0.5px solid var(--border)}
+.stat-num{font-family:var(--serif);font-size:2.5rem;color:var(--gold);font-weight:400;line-height:1}
+.stat-label{font-size:13px;color:var(--text-muted);line-height:1.5}
 
-/* ═══════════════════════════════
-   HERO
-═══════════════════════════════ */
-.hero-wrap {
-  background: var(--navy);
-  position: relative;
-  overflow: hidden;
-  padding: 90px 6% 80px;
-}
-.hero-rangoli {
-  position: absolute; right: -60px; top: -60px;
-  width: 600px; height: 600px; opacity: 0.04;
-  background-image: repeating-conic-gradient(var(--saffron) 0deg 10deg, transparent 10deg 20deg);
-  border-radius: 50%;
-}
-.hero-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center;
-  position: relative; z-index: 1;
-}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,107,0,0.1);
-  border: 1px solid rgba(255,107,0,0.25);
-  padding: 7px 16px; border-radius: 30px;
-  font-size: 12px; font-weight: 600; color: var(--saffron-light);
-  margin-bottom: 24px;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.5px;
-}
-.hero-title {
-  font-size: clamp(38px, 5vw, 66px);
-  font-weight: 800; line-height: 1.05;
-  letter-spacing: -2px; color: #fff;
-  margin-bottom: 10px;
-}
-.hero-title .accent { color: var(--saffron); }
-.hero-deva {
-  font-family: 'Noto Sans Devanagari', sans-serif;
-  font-size: clamp(16px, 2vw, 22px);
-  color: rgba(255,255,255,0.4);
-  font-weight: 400; margin-bottom: 28px;
-  letter-spacing: 0;
-}
-.hero-desc {
-  font-size: clamp(15px, 1.5vw, 18px);
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7; margin-bottom: 40px;
-  max-width: 500px;
-}
-.hero-desc .hl { color: var(--gold-light); font-weight: 600; }
-.hero-voice-demo {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin-bottom: 36px;
-  display: flex; align-items: center; gap: 14px;
-}
-.voice-wave { display: flex; align-items: center; gap: 3px; }
-.wave-bar {
-  width: 3px; border-radius: 2px;
-  background: var(--saffron);
-  animation: wavebar 1.2s ease-in-out infinite;
-}
-.wave-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
-.wave-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
-.wave-bar:nth-child(3) { height: 14px; animation-delay: 0.2s; }
-.wave-bar:nth-child(4) { height: 24px; animation-delay: 0.3s; }
-.wave-bar:nth-child(5) { height: 10px; animation-delay: 0.4s; }
-.wave-bar:nth-child(6) { height: 18px; animation-delay: 0.15s; }
-.wave-bar:nth-child(7) { height: 8px; animation-delay: 0.25s; }
-@keyframes wavebar {
-  0%,100% { transform: scaleY(1); opacity: 0.7; }
-  50% { transform: scaleY(1.8); opacity: 1; }
-}
-.voice-text { flex: 1; }
-.voice-spoken { font-size: 15px; font-weight: 600; color: #fff; font-family: 'Noto Sans Devanagari', sans-serif; }
-.voice-translated { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
-.voice-check {
-  width: 28px; height: 28px; border-radius: 50%;
-  background: rgba(74,222,128,0.15);
-  border: 1px solid rgba(74,222,128,0.3);
-  display: flex; align-items: center; justify-content: center;
-  color: #4ADE80; font-size: 13px; font-weight: 700;
-  flex-shrink: 0;
-}
-.hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-bottom: 44px; }
-.btn-hero-primary {
-  background: var(--saffron);
-  color: #fff; padding: 16px 32px;
-  border-radius: 12px; font-size: 16px; font-weight: 700;
-  text-decoration: none; border: none; cursor: pointer;
-  transition: all 0.25s; letter-spacing: -0.3px;
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  position: relative; overflow: hidden;
-}
-.btn-hero-primary::before {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-}
-.btn-hero-primary:hover { transform: translateY(-2px); background: var(--saffron-light); box-shadow: 0 12px 32px rgba(255,107,0,0.4); }
-.btn-hero-outline {
-  background: transparent; color: rgba(255,255,255,0.8);
-  padding: 16px 28px; border-radius: 12px;
-  font-size: 15px; font-weight: 600;
-  text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  cursor: pointer; transition: all 0.2s;
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.btn-hero-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
-.hero-trust-row { display: flex; flex-wrap: wrap; gap: 20px; }
-.trust-pill {
-  display: flex; align-items: center; gap: 7px;
-  font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 500;
-}
-.trust-icon { font-size: 14px; }
+/* DIFFERENCE */
+.difference-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:4rem;border:0.5px solid var(--border)}
+.diff-card{padding:2.5rem;border-right:0.5px solid var(--border);position:relative;transition:background 0.4s}
+.diff-card:last-child{border-right:none}
+.diff-card:hover{background:var(--dim)}
+.diff-num{font-family:var(--mono);font-size:10px;color:var(--gold-dim);letter-spacing:0.15em;margin-bottom:1.5rem}
+.diff-card h3{font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:1rem;line-height:1.3}
+.diff-card p{font-size:13px;color:var(--text-muted);line-height:1.8}
 
-/* HERO RIGHT — PHONE + CARDS */
-.hero-right { position: relative; padding: 20px 0; }
-.phone-frame {
-  background: #fff;
-  border-radius: 28px;
-  overflow: hidden;
-  width: 300px; margin: 0 auto;
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3);
-}
-.phone-notch {
-  background: var(--navy);
-  height: 28px;
-  display: flex; align-items: center; justify-content: center;
-}
-.phone-notch-pill { width: 80px; height: 10px; background: #0d1a3a; border-radius: 10px; }
-.wa-header {
-  background: #075E54;
-  padding: 12px 16px;
-  display: flex; align-items: center; gap: 10px;
-}
-.wa-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  background: var(--saffron);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0;
-}
-.wa-name { font-size: 13px; font-weight: 700; color: #fff; }
-.wa-online { font-size: 10px; color: rgba(255,255,255,0.6); }
-.wa-chat {
-  background: #E5DDD5;
-  padding: 14px 12px;
-  display: flex; flex-direction: column; gap: 8px;
-  min-height: 320px;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23B2A99F' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-.chat-date { text-align: center; font-size: 10px; color: #8E8E8E; background: rgba(255,255,255,0.6); padding: 3px 10px; border-radius: 10px; align-self: center; }
-.bubble { padding: 8px 12px; border-radius: 10px; font-size: 12px; line-height: 1.5; max-width: 85%; }
-.bubble-user { background: #DCF8C6; align-self: flex-end; border-bottom-right-radius: 3px; color: #1a1a1a; font-family: 'Noto Sans Devanagari', sans-serif; }
-.bubble-ai { background: #fff; align-self: flex-start; border-bottom-left-radius: 3px; color: #1a1a1a; border: 1px solid rgba(0,0,0,0.06); }
-.bubble-ai strong { color: #075E54; }
-.bubble-time { font-size: 9px; color: #8E8E8E; text-align: right; margin-top: 3px; }
-.wa-bar {
-  background: #F0F0F0; padding: 8px 12px;
-  display: flex; align-items: center; gap: 8px;
-  border-top: 1px solid rgba(0,0,0,0.08);
-}
-.wa-mic {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--saffron);
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-}
-.wa-mic svg { width: 14px; height: 14px; fill: #fff; }
-.wa-type { font-size: 11px; color: #aaa; font-style: italic; flex: 1; }
+/* SERVICES */
+.services{background:var(--dim)}
+.services-intro{max-width:560px;margin-bottom:5rem}
+.services-intro p{color:var(--text-muted);font-size:15px;margin-top:1rem}
+.services-table{border:0.5px solid var(--border)}
+.service-row{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;padding:1.5rem 2rem;border-bottom:0.5px solid var(--border);align-items:center;transition:background 0.3s;gap:1rem}
+.service-row:last-child{border-bottom:none}
+.service-row:hover{background:rgba(201,168,76,0.03)}
+.service-header{background:rgba(201,168,76,0.05);padding:1rem 2rem;border-bottom:0.5px solid var(--border)}
+.service-header-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:1rem}
+.service-header span{font-family:var(--mono);font-size:10px;letter-spacing:0.15em;color:var(--gold-dim);text-transform:uppercase}
+.service-name{font-family:var(--serif);font-size:1.1rem;font-weight:400}
+.service-sub{font-size:12px;color:var(--text-muted);margin-top:0.3rem}
+.service-price{font-family:var(--mono);font-size:14px;color:var(--gold)}
+.service-time{font-size:12px;color:var(--text-muted)}
+.service-tag{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border:0.5px solid var(--border);color:var(--text-dim);display:inline-block}
+.service-tag.hot{border-color:var(--gold-dim);color:var(--gold)}
 
-.float-card {
-  position: absolute;
-  background: #fff;
-  border-radius: 14px;
-  padding: 12px 16px;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-  border: 1px solid rgba(255,255,255,0.9);
-  animation: floatbob 4s ease-in-out infinite;
-}
-@keyframes floatbob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-.float-card-1 { top: 10px; left: -50px; animation-delay: 0s; }
-.float-card-2 { bottom: 40px; right: -44px; animation-delay: 2s; }
-.fc-label { font-size: 10px; color: var(--text-muted); margin-bottom: 3px; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 1px; }
-.fc-value { font-size: 22px; font-weight: 800; letter-spacing: -0.8px; color: var(--text-primary); }
-.fc-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
-.fc-green { color: #138808; }
-.fc-saffron { color: var(--saffron); }
+/* WHO */
+.who-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:4rem;border:0.5px solid var(--border)}
+.who-card{padding:2.5rem;border-right:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+.who-card:nth-child(2n){border-right:none}
+.who-card:nth-child(3),.who-card:nth-child(4){border-bottom:none}
+.who-card h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;margin-bottom:0.8rem}
+.who-card p{font-size:13px;color:var(--text-muted);line-height:1.8}
+.who-card .who-icon{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.15em;margin-bottom:1.2rem}
 
-/* ═══════════════════════════════
-   TRUST BAR
-═══════════════════════════════ */
-.trust-bar {
-  background: #fff;
-  border-bottom: 1px solid var(--border);
-  padding: 18px 6%;
-  display: flex; align-items: center; justify-content: center;
-  gap: 40px; flex-wrap: wrap;
-}
-.trust-bar-item {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 13px; color: var(--text-secondary); font-weight: 500;
-}
-.trust-bar-icon {
-  width: 32px; height: 32px; border-radius: 8px;
-  background: var(--off-white);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  border: 1px solid var(--border);
-}
-.trust-divider { width: 1px; height: 24px; background: var(--border); }
+/* ODISHA */
+.odisha{background:var(--dim);overflow:hidden;position:relative}
+.odisha-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.odisha-text p{color:var(--text-muted);font-size:15px;line-height:1.9;margin-bottom:1.5rem}
+.odisha-facts{display:grid;gap:0}
+.fact{padding:1.2rem 0;border-bottom:0.5px solid var(--border);display:flex;gap:1.5rem;align-items:flex-start}
+.fact:first-child{border-top:0.5px solid var(--border)}
+.fact-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;margin-top:0.5rem;flex-shrink:0}
+.fact p{font-size:13px;color:var(--text-muted);line-height:1.7}
+.fact p strong{color:var(--paper);font-weight:400}
 
-/* ═══════════════════════════════
-   STATS SECTION
-═══════════════════════════════ */
-.stats-section {
-  background: var(--navy);
-  padding: 64px 6%;
-}
-.stats-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-.stats-label { font-size: 12px; font-weight: 600; color: var(--saffron); letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; margin-bottom: 12px; }
-.stats-title { font-size: clamp(24px, 3vw, 38px); font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 48px; line-height: 1.2; }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-.stat-box {
-  padding: 32px 20px;
-  border-right: 1px solid rgba(255,255,255,0.07);
-  position: relative;
-}
-.stat-box:last-child { border-right: none; }
-.stat-num {
-  font-size: clamp(32px, 4vw, 48px); font-weight: 800;
-  letter-spacing: -1.5px; line-height: 1;
-  background: linear-gradient(135deg, var(--saffron) 0%, var(--gold) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  margin-bottom: 8px;
-}
-.stat-unit { font-size: 16px; font-weight: 600; }
-.stat-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+/* PROCESS */
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;border:0.5px solid var(--border)}
+.step{padding:2rem 1.5rem;border-right:0.5px solid var(--border)}
+.step:last-child{border-right:none}
+.step-num{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:0.2em;margin-bottom:1.5rem}
+.step h3{font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:0.8rem;line-height:1.3}
+.step p{font-size:12px;color:var(--text-muted);line-height:1.7}
 
-/* ═══════════════════════════════
-   HOW IT WORKS
-═══════════════════════════════ */
-.hiw-section { padding: 96px 6%; background: var(--off-white); }
-.hiw-inner { max-width: 1100px; margin: 0 auto; }
-.section-eyebrow { font-size: 12px; font-weight: 700; color: var(--saffron); letter-spacing: 2px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; margin-bottom: 14px; }
-.section-h { font-size: clamp(28px, 3.5vw, 46px); font-weight: 800; letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 16px; }
-.section-p { font-size: 17px; color: var(--text-secondary); line-height: 1.7; max-width: 540px; margin-bottom: 60px; }
-.steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.step-card {
-  background: #fff;
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 36px 30px;
-  position: relative;
-  transition: all 0.3s;
-  overflow: hidden;
-}
-.step-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--saffron), var(--gold));
-  transform: scaleX(0); transform-origin: left;
-  transition: transform 0.3s;
-}
-.step-card:hover::before { transform: scaleX(1); }
-.step-card:hover { border-color: rgba(255,107,0,0.25); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(255,107,0,0.08); }
-.step-number {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; color: var(--saffron); font-weight: 600;
-  letter-spacing: 1.5px; margin-bottom: 20px;
-  display: flex; align-items: center; gap: 8px;
-}
-.step-num-badge {
-  width: 24px; height: 24px; border-radius: 6px;
-  background: var(--saffron-glow);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: var(--saffron);
-}
-.step-icon-wrap {
-  width: 56px; height: 56px; border-radius: 16px;
-  background: var(--off-white);
-  border: 1.5px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px; margin-bottom: 22px;
-  transition: all 0.3s;
-}
-.step-card:hover .step-icon-wrap { background: var(--saffron-glow); border-color: rgba(255,107,0,0.2); }
-.step-card h3 { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
-.step-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-.step-sample {
-  margin-top: 20px; padding: 12px 16px;
-  background: rgba(11,20,55,0.04);
-  border-radius: 10px;
-  border-left: 3px solid var(--saffron);
-}
-.step-sample-lang { font-size: 10px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
-.step-sample-text { font-family: 'Noto Sans Devanagari', sans-serif; font-size: 14px; color: var(--navy); font-weight: 500; }
+/* CTA */
+.cta-section{text-align:center;padding:10rem 3rem;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(201,168,76,0.07) 0%,transparent 65%)}
+.cta-section .section-title{font-size:clamp(2.5rem,6vw,5rem);max-width:600px;margin:0 auto 1.5rem}
+.cta-section p{color:var(--text-muted);font-size:15px;max-width:400px;margin:0 auto 3rem}
+.cta-actions{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
 
-/* ═══════════════════════════════
-   FEATURES
-═══════════════════════════════ */
-.features-section { background: #fff; padding: 96px 6%; }
-.features-inner { max-width: 1100px; margin: 0 auto; }
-.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 60px; }
-.feat-card {
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-lg);
-  padding: 36px;
-  transition: all 0.3s;
-  position: relative; overflow: hidden;
-}
-.feat-card:hover { border-color: rgba(255,107,0,0.3); box-shadow: 0 16px 48px rgba(255,107,0,0.06); transform: translateY(-3px); }
-.feat-card.dark { background: var(--navy); border-color: rgba(255,255,255,0.1); }
-.feat-card.dark:hover { border-color: rgba(255,107,0,0.3); }
-.feat-card.span2 { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.feat-tag {
-  display: inline-block;
-  background: var(--saffron-glow); color: var(--saffron);
-  font-size: 11px; font-weight: 700;
-  padding: 5px 12px; border-radius: 20px;
-  margin-bottom: 18px;
-  font-family: 'JetBrains Mono', monospace;
-  letter-spacing: 0.5px;
-}
-.feat-card.dark .feat-tag { background: rgba(255,107,0,0.15); color: var(--saffron-light); }
-.feat-icon {
-  width: 52px; height: 52px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; margin-bottom: 20px;
-  background: var(--off-white); border: 1.5px solid var(--border);
-}
-.feat-card.dark .feat-icon { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.1); }
-.feat-card h3 { font-size: 21px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 10px; }
-.feat-card.dark h3 { color: #fff; }
-.feat-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
-.feat-card.dark p { color: rgba(255,255,255,0.55); }
+/* FOOTER */
+footer{border-top:0.5px solid var(--border);padding:3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem}
+.footer-logo{font-family:var(--mono);font-size:12px;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase}
+.footer-copy{font-size:12px;color:var(--text-dim)}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{font-size:12px;color:var(--text-dim);text-decoration:none;transition:color 0.3s}
+.footer-links a:hover{color:var(--text-muted)}
 
-/* Inventory live widget */
-.inv-widget { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 20px; }
-.inv-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-.inv-title { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
-.inv-updated { font-size: 10px; color: rgba(255,255,255,0.3); font-family: 'JetBrains Mono', monospace; }
-.inv-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.inv-row:last-child { margin-bottom: 0; }
-.inv-name { width: 80px; font-size: 12px; color: rgba(255,255,255,0.7); flex-shrink: 0; }
-.inv-bar-wrap { flex: 1; height: 6px; border-radius: 3px; background: rgba(255,255,255,0.1); overflow: hidden; }
-.inv-bar { height: 100%; border-radius: 3px; }
-.inv-bar.good { background: #4ADE80; }
-.inv-bar.low { background: var(--saffron); }
-.inv-bar.critical { background: #F87171; }
-.inv-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 8px; white-space: nowrap; }
-.badge-good { background: rgba(74,222,128,0.15); color: #4ADE80; }
-.badge-low { background: rgba(255,107,0,0.15); color: var(--saffron-light); }
-.badge-crit { background: rgba(248,113,113,0.15); color: #FCA5A5; }
+/* DIVIDER */
+.divider{height:0.5px;background:var(--border);margin:0}
 
-/* ═══════════════════════════════
-   PRICING
-═══════════════════════════════ */
-.pricing-section { background: var(--off-white); padding: 96px 6%; }
-.pricing-inner { max-width: 1100px; margin: 0 auto; }
-.pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
-.price-card {
-  background: #fff; border: 1.5px solid var(--border);
-  border-radius: var(--r-lg); padding: 36px 30px;
-  position: relative; transition: all 0.3s;
-}
-.price-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(11,20,55,0.1); }
-.price-card.featured {
-  background: var(--navy); border-color: var(--saffron);
-  border-width: 2px;
-}
-.featured-badge {
-  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(90deg, var(--saffron), var(--gold));
-  color: #fff; font-size: 11px; font-weight: 700;
-  padding: 5px 18px; border-radius: 20px;
-  white-space: nowrap; letter-spacing: 0.3px;
-  box-shadow: 0 4px 12px rgba(255,107,0,0.4);
-}
-.price-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-family: 'JetBrains Mono', monospace; margin-bottom: 6px; }
-.price-card.featured .price-label { color: rgba(255,255,255,0.4); }
-.price-name { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 18px; }
-.price-card.featured .price-name { color: #fff; }
-.price-amount { display: flex; align-items: baseline; gap: 4px; margin-bottom: 6px; }
-.price-rs { font-size: 20px; font-weight: 700; color: var(--saffron); }
-.price-num { font-size: 48px; font-weight: 800; letter-spacing: -2px; line-height: 1; color: var(--text-primary); }
-.price-card.featured .price-num { color: #fff; }
-.price-per { font-size: 14px; color: var(--text-muted); }
-.price-card.featured .price-per { color: rgba(255,255,255,0.4); }
-.price-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
-.price-card.featured .price-desc { color: rgba(255,255,255,0.45); }
-.price-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
-.price-card.featured .price-divider { background: rgba(255,255,255,0.08); }
-.feat-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-.feat-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-.price-card.featured .feat-list li { color: rgba(255,255,255,0.65); }
-.feat-check { color: #4ADE80; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-.price-action {
-  width: 100%; padding: 14px;
-  border-radius: 10px; font-size: 15px; font-weight: 700;
-  cursor: pointer; border: none; transition: all 0.2s;
-  text-align: center; display: block; text-decoration: none;
-  letter-spacing: -0.2px; font-family: 'Plus Jakarta Sans', sans-serif;
-}
-.pa-ghost { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
-.pa-ghost:hover { border-color: var(--saffron); color: var(--saffron); }
-.pa-primary { background: linear-gradient(135deg, var(--saffron), var(--gold)); color: #fff; }
-.pa-primary:hover { box-shadow: 0 8px 24px rgba(255,107,0,0.4); transform: translateY(-1px); }
-
-/* ═══════════════════════════════
-   TESTIMONIALS
-═══════════════════════════════ */
-.testi-section { background: #fff; padding: 96px 6%; }
-.testi-inner { max-width: 1100px; margin: 0 auto; }
-.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 60px; }
-.testi-card {
-  background: var(--off-white);
-  border: 1.5px solid var(--border);
-  border-radius: var(--r-lg); padding: 32px;
-  transition: all 0.3s; position: relative; overflow: hidden;
-}
-.testi-card::after {
-  content: '\201C';
-  position: absolute; top: 16px; right: 20px;
-  font-size: 80px; font-weight: 900; color: rgba(255,107,0,0.07);
-  line-height: 1; font-family: Georgia, serif;
-}
-.testi-card:hover { border-color: rgba(255,107,0,0.25); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(255,107,0,0.06); }
-.testi-stars { display: flex; gap: 3px; margin-bottom: 16px; }
-.star { color: var(--gold); font-size: 14px; }
-.testi-quote { font-size: 15px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 24px; font-family: 'Noto Sans Devanagari', sans-serif; }
-.testi-author { display: flex; align-items: center; gap: 12px; }
-.testi-av {
-  width: 42px; height: 42px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--saffron), var(--gold));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px; font-weight: 800; color: #fff;
-  flex-shrink: 0;
-}
-.testi-name { font-size: 14px; font-weight: 700; }
-.testi-role { font-size: 12px; color: var(--text-muted); }
-.pilot-pill {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(19,136,8,0.08); color: var(--green-india);
-  font-size: 10px; font-weight: 600;
-  padding: 3px 8px; border-radius: 8px; margin-top: 4px;
-  font-family: 'JetBrains Mono', monospace; letter-spacing: 0.3px;
-}
-
-/* ═══════════════════════════════
-   WAITLIST / CTA SECTION
-═══════════════════════════════ */
-.cta-section {
-  background: var(--navy);
-  padding: 100px 6%;
-  position: relative; overflow: hidden;
-}
-.cta-rangoli {
-  position: absolute; left: -100px; bottom: -100px;
-  width: 500px; height: 500px; opacity: 0.04;
-  background-image: repeating-conic-gradient(var(--saffron) 0deg 10deg, transparent 10deg 20deg);
-  border-radius: 50%;
-}
-.cta-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
-.cta-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(255,107,0,0.1); border: 1px solid rgba(255,107,0,0.2);
-  color: var(--saffron-light); font-size: 12px; font-weight: 600;
-  padding: 7px 18px; border-radius: 30px; margin-bottom: 28px;
-  font-family: 'JetBrains Mono', monospace;
-}
-.cta-title {
-  font-size: clamp(32px, 4.5vw, 56px); font-weight: 800;
-  color: #fff; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 18px;
-}
-.cta-title .cta-accent { color: var(--saffron); }
-.cta-sub { font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.65; margin-bottom: 44px; }
-.waitlist-box {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--r-lg); padding: 32px 36px;
-  margin-bottom: 28px;
-}
-.waitlist-box-label { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 16px; font-weight: 500; }
-.waitlist-row { display: flex; gap: 10px; }
-.wl-input {
-  flex: 1; padding: 15px 20px;
-  background: rgba(255,255,255,0.08);
-  border: 1.5px solid rgba(255,255,255,0.15);
-  border-radius: 10px; color: #fff;
-  font-size: 15px; font-family: 'Plus Jakarta Sans', sans-serif;
-  outline: none; transition: all 0.2s;
-}
-.wl-input::placeholder { color: rgba(255,255,255,0.25); }
-.wl-input:focus { border-color: var(--saffron); background: rgba(255,107,0,0.05); }
-.wl-btn {
-  background: linear-gradient(135deg, var(--saffron), var(--gold));
-  color: #fff; border: none;
-  padding: 15px 28px; border-radius: 10px;
-  font-size: 15px; font-weight: 700;
-  cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-  transition: all 0.2s; white-space: nowrap;
-}
-.wl-btn:hover { box-shadow: 0 8px 24px rgba(255,107,0,0.4); transform: translateY(-1px); }
-.wl-note { font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 12px; }
-.cta-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-.cta-badge {
-  display: flex; align-items: center; gap: 7px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 8px 16px; border-radius: 30px;
-  font-size: 12px; color: rgba(255,255,255,0.4);
-  font-family: 'JetBrains Mono', monospace;
-}
-.cta-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.2); }
-
-/* ═══════════════════════════════
-   FOOTER
-═══════════════════════════════ */
-footer {
-  background: #070E2A;
-  padding: 60px 6% 32px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.footer-grid {
-  max-width: 1100px; margin: 0 auto;
-  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
-  margin-bottom: 48px;
-}
-.footer-brand-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.footer-brand-mark {
-  width: 34px; height: 34px; border-radius: 9px;
-  background: linear-gradient(135deg, var(--saffron), var(--gold));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 13px; font-weight: 800; color: #fff;
-}
-.footer-brand-name { font-size: 16px; font-weight: 800; color: #fff; letter-spacing: -0.3px; }
-.footer-brand-desc { font-size: 13px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 230px; margin-bottom: 20px; }
-.footer-india {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 11px; color: rgba(255,255,255,0.2);
-  font-family: 'JetBrains Mono', monospace;
-}
-.footer-col-title { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-family: 'JetBrains Mono', monospace; }
-.footer-col a { display: block; font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; margin-bottom: 12px; transition: color 0.2s; }
-.footer-col a:hover { color: rgba(255,255,255,0.75); }
-.footer-bottom {
-  max-width: 1100px; margin: 0 auto;
-  padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.05);
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-copy { font-size: 12px; color: rgba(255,255,255,0.18); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 12px; color: rgba(255,255,255,0.2); text-decoration: none; transition: color 0.2s; }
-.footer-links a:hover { color: rgba(255,255,255,0.5); }
-
-/* ═══════════════════════════════
-   TOAST
-═══════════════════════════════ */
-.toast {
-  position: fixed; bottom: 28px; right: 28px; z-index: 999;
-  background: #138808; color: #fff;
-  padding: 16px 24px; border-radius: 14px;
-  font-size: 14px; font-weight: 600;
-  display: none; align-items: center; gap: 10px;
-  box-shadow: 0 8px 32px rgba(19,136,8,0.4);
-  animation: toastin 0.4s cubic-bezier(0.34,1.56,0.64,1);
-}
-.toast.show { display: flex; }
-@keyframes toastin { from{opacity:0;transform:translateY(30px) scale(0.9)} to{opacity:1;transform:translateY(0) scale(1)} }
-
-/* ═══════════════════════════════
-   SCROLL ANIMATIONS
-═══════════════════════════════ */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
-.reveal-d1 { transition-delay: 0.1s; }
-.reveal-d2 { transition-delay: 0.2s; }
-.reveal-d3 { transition-delay: 0.3s; }
-
-/* ═══════════════════════════════
-   RESPONSIVE
-═══════════════════════════════ */
-@media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-desc { margin: 0 auto 40px; }
-  .hero-actions { justify-content: center; }
-  .hero-trust-row { justify-content: center; }
-  .phone-frame { display: none; }
-  .steps-grid { grid-template-columns: 1fr; }
-  .features-grid { grid-template-columns: 1fr; }
-  .feat-card.span2 { grid-column: span 1; grid-template-columns: 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
-  .testi-grid { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: repeat(2,1fr); }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-center { display: none; }
-  .trust-bar { gap: 20px; }
-  .trust-divider { display: none; }
-  .waitlist-row { flex-direction: column; }
-}
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{animation:fadeUp 0.8s ease both}
+.hero h1{animation:fadeUp 0.8s 0.2s ease both}
+.hero-sub{animation:fadeUp 0.8s 0.4s ease both}
+.hero-actions{animation:fadeUp 0.8s 0.6s ease both}
 </style>
 </head>
 <body>
 
-<!-- ═══ NAV ═══ -->
 <nav>
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">AI</div>
-    <div class="nav-wordmark">
-      <span class="nav-brand">LOKAL AI</span>
-      <span class="nav-tagline">AI Munim · Kirana Intelligence</span>
-    </div>
-  </a>
-  <div class="nav-center">
-    <a href="#how-it-works">Kaise kaam karta hai</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#waitlist">Contact</a>
-  </div>
-  <div class="nav-right">
-    <div class="nav-pilot-badge">
-      <span class="live-dot"></span>
-      Pilot open · BBSR
-    </div>
-    <a href="#waitlist" class="nav-cta-btn">Free join karo</a>
-  </div>
+  <div class="nav-logo">LokalAI</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#who">Who We Serve</a></li>
+    <li><a href="#odisha">Odisha Edge</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get Intelligence</a>
 </nav>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero-wrap">
-  <div class="hero-rangoli"></div>
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="hero-eyebrow">
-        <span class="live-dot"></span>
-        Bhubaneswar pilot · 50 spots bache hain
-      </div>
-      <h1 class="hero-title">
-        Aapka<br><span class="accent">AI Munim</span><br>Ready Hai
-      </h1>
-      <p class="hero-deva">आपका AI मुनीम — बिना टाइपिंग के, बिना app के</p>
-      <p class="hero-desc">
-        Bas <span class="hl">"50kg atta bik gaya"</span> boliye WhatsApp pe — AI Munim stock update karta hai, expiry alert bhejta hai, aur ONDC pe listing automatically refresh karta hai. Odia aur Hindi mein.
-      </p>
-      <div class="hero-voice-demo">
-        <div class="voice-wave">
-          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
-          <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
-          <div class="wave-bar"></div>
-        </div>
-        <div class="voice-text">
-          <div class="voice-spoken">५०kg आटा बिक गया भाई</div>
-          <div class="voice-translated">Voice detected → Stock updated in 2s · Bhashini AI</div>
-        </div>
-        <div class="voice-check">✓</div>
-      </div>
-      <div class="hero-actions">
-        <a href="#waitlist" class="btn-hero-primary">
-          Free pilot join karo →
-        </a>
-        <a href="#how-it-works" class="btn-hero-outline">
-          Dekho kaise kaam karta hai
-        </a>
-      </div>
-      <div class="hero-trust-row">
-        <div class="trust-pill"><span class="trust-icon">🏛️</span> Udyam MSME registered</div>
-        <div class="trust-pill"><span class="trust-icon">🇮🇳</span> Digital India · Bhashini</div>
-        <div class="trust-pill"><span class="trust-icon">🛒</span> ONDC seller partner</div>
-        <div class="trust-pill"><span class="trust-icon">🔒</span> Data 100% secure</div>
-      </div>
-    </div>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag">Ground Intelligence · India</div>
+  <h1>India's most <em>underreported</em> markets — decoded.</h1>
+  <p class="hero-sub">AI-powered market research built on genuine ground-level knowledge. For startups, investors, and global businesses who can't afford to get India wrong.</p>
+  <div class="hero-actions">
+    <a href="#services" class="btn-primary">View Intelligence Reports</a>
+    <a href="#odisha" class="btn-ghost">Our Odisha Advantage →</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
 
-    <div class="hero-right">
-      <div class="float-card float-card-1 reveal">
-        <div class="fc-label">Aaj ka stock accuracy</div>
-        <div class="fc-value fc-green">95.2%</div>
-        <div class="fc-sub">AI se track ho raha hai</div>
+<div class="divider"></div>
+
+<section class="problem" id="problem">
+  <div class="section-tag">The Problem</div>
+  <div class="section-title">India is not one market.<br>It's <em>28 different countries.</em></div>
+  <div class="problem-grid">
+    <div class="problem-text">
+      <p>A company that succeeds in Mumbai can <strong>completely fail in Bhubaneswar</strong> doing the exact same thing. Each state has different language, culture, policy, consumer behavior, and regulatory environment.</p>
+      <p>Big consulting firms charge ₹20–50 lakhs and take 3 months — delivering a generic report written by someone who has <strong>never visited that market.</strong></p>
+      <p>LokalAI delivers institutional-quality intelligence in days, not months. At prices that growing businesses can actually afford.</p>
+    </div>
+    <div class="problem-stats">
+      <div class="stat-row">
+        <div class="stat-num">₹20L+</div>
+        <div class="stat-label">Minimum project cost at a Big 4 firm — inaccessible to 99% of startups</div>
       </div>
-      <div class="phone-frame">
-        <div class="phone-notch"><div class="phone-notch-pill"></div></div>
-        <div class="wa-header">
-          <div class="wa-avatar">AI</div>
-          <div>
-            <div class="wa-name">AI Munim — LOKAL AI</div>
-            <div class="wa-online">Online · Hamesha available</div>
-          </div>
-        </div>
-        <div class="wa-chat">
-          <div class="chat-date">Aaj · 9:14 AM</div>
-          <div class="bubble bubble-user">50kg atta bik gaya bhai 🙏</div>
-          <div class="bubble bubble-ai">
-            <strong>✅ Stock updated!</strong><br>
-            Atta ab 25kg bacha hai.<br>
-            Reorder alert supplier ko bhej diya.<br>
-            ONDC listing bhi refresh ho gayi!
-          </div>
-          <div class="bubble-time">9:14 AM ✓✓</div>
-          <div class="bubble bubble-user" style="margin-top:6px">Aaj ka GST report chahiye bank ke liye</div>
-          <div class="bubble bubble-ai">
-            <strong>📋 Report ready hai!</strong><br>
-            Sales: ₹8,420 · GST: ₹312<br>
-            Bank loan ke liye PDF bhi ready ✓
-          </div>
-        </div>
-        <div class="wa-bar">
-          <div class="wa-mic">
-            <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zm-1 3a1 1 0 0 1 2 0v8a1 1 0 0 1-2 0V4zm8 8h-2a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.93V20H9v2h6v-2h-2v-2.07A7 7 0 0 0 19 12z"/></svg>
-          </div>
-          <div class="wa-type">Boliye Odia ya Hindi mein...</div>
-        </div>
+      <div class="stat-row">
+        <div class="stat-num">3mo</div>
+        <div class="stat-label">Average delivery time for traditional research — outdated before you read it</div>
       </div>
-      <div class="float-card float-card-2 reveal reveal-d2">
-        <div class="fc-label">Is mahine ki sales uplift</div>
-        <div class="fc-value fc-saffron">+22%</div>
-        <div class="fc-sub">ONDC listing se naye customers</div>
+      <div class="stat-row">
+        <div class="stat-num">1.2L</div>
+        <div class="stat-label">DPIIT-recognized startups in India with no good intelligence option</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-num">5–10d</div>
+        <div class="stat-label">LokalAI delivery window — reflecting current ground reality, not history</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ TRUST BAR ═══ -->
-<div class="trust-bar">
-  <div class="trust-bar-item"><div class="trust-bar-icon">🏛️</div> Udyam MSME Registered</div>
-  <div class="trust-divider"></div>
-  <div class="trust-bar-item"><div class="trust-bar-icon">🎙️</div> Bhashini API — Government of India</div>
-  <div class="trust-divider"></div>
-  <div class="trust-bar-item"><div class="trust-bar-icon">🛒</div> ONDC Official Seller Partner</div>
-  <div class="trust-divider"></div>
-  <div class="trust-bar-item"><div class="trust-bar-icon">🤖</div> IndiaAI Mission Applicant</div>
-  <div class="trust-divider"></div>
-  <div class="trust-bar-item"><div class="trust-bar-icon">🔐</div> Digilocker KYC Verified</div>
-  <div class="trust-divider"></div>
-  <div class="trust-bar-item"><div class="trust-bar-icon">📍</div> Made in Bhubaneswar, Odisha</div>
-</div>
+<div class="divider"></div>
 
-<!-- ═══ STATS ═══ -->
-<div class="stats-section">
-  <div class="stats-inner">
-    <div class="stats-label">Problem kitna bada hai</div>
-    <h2 class="stats-title">India ke kiranas har saal ₹20 lakh crore khote hain.<br>LOKAL AI isko rokta hai.</h2>
-    <div class="stats-grid">
-      <div class="stat-box reveal">
-        <div class="stat-num">12<span class="stat-unit">M+</span></div>
-        <div class="stat-desc">Kirana stores jinke paas koi digital system nahi</div>
-      </div>
-      <div class="stat-box reveal reveal-d1">
-        <div class="stat-num">30<span class="stat-unit">%</span></div>
-        <div class="stat-desc">Stock jo expiry aur kharaab tracking se barbad hota hai</div>
-      </div>
-      <div class="stat-box reveal reveal-d2">
-        <div class="stat-num">95<span class="stat-unit">%</span></div>
-        <div class="stat-desc">Stock accuracy AI Munim ke saath — bina kisi typing ke</div>
-      </div>
-      <div class="stat-box reveal reveal-d3">
-        <div class="stat-num">20<span class="stat-unit">%</span></div>
-        <div class="stat-desc">Average sales uplift ONDC listing se pehle mahine mein</div>
-      </div>
+<section id="difference" style="padding:8rem 3rem">
+  <div class="section-tag">Why LokalAI</div>
+  <div class="section-title">The intelligence gap<br>costs <em>real money.</em></div>
+  <div class="difference-grid">
+    <div class="diff-card">
+      <div class="diff-num">01 — Speed</div>
+      <h3>Days, not months</h3>
+      <p>AI tools synthesize hundreds of sources simultaneously — government databases, startup data, news, policy documents. What takes 3 weeks takes us 3–5 days.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">02 — Depth</div>
+      <h3>Ground truth, not desk research</h3>
+      <p>We bridge the gap between policy-on-paper and ground-level-reality. The difference in India is enormous. We're from here. We understand how it actually works.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-num">03 — Access</div>
+      <h3>Startup-accessible pricing</h3>
+      <p>A seed-stage startup can afford proper market research. Not just companies who can write ₹50 lakh checks. Every report includes a video walkthrough of key findings.</p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- ═══ HOW IT WORKS ═══ -->
-<section class="hiw-section" id="how-it-works">
-  <div class="hiw-inner">
-    <div class="section-eyebrow">Kaise kaam karta hai</div>
-    <h2 class="section-h">Teen steps. Zero typing.<br>Koi app nahi.</h2>
-    <p class="section-p">Agar aap WhatsApp use kar sakte hain, toh aap AI Munim use kar sakte hain. Itna simple hai.</p>
-    <div class="steps-grid">
-      <div class="step-card reveal">
-        <div class="step-number"><div class="step-num-badge">01</div> BOLIYE</div>
-        <div class="step-icon-wrap">🎙️</div>
-        <h3>Voice mein batao kya bika</h3>
-        <p>WhatsApp kholo aur voice message bhejo. Odia mein boliye, Hindi mein boliye — aapki apni bhasha mein. Koi app download karne ki zarurat nahi.</p>
-        <div class="step-sample">
-          <div class="step-sample-lang">Odia example</div>
-          <div class="step-sample-text">"Ek box Maggi r 2kg sugar biki gala"</div>
-        </div>
+<div class="divider"></div>
+
+<section class="services" id="services">
+  <div class="services-intro">
+    <div class="section-tag">Intelligence Products</div>
+    <div class="section-title">Every level of <em>intelligence</em> you need.</div>
+    <p>From quick market snapshots to full strategic engagements. Every report includes a 15-minute video walkthrough — no other research provider does this.</p>
+  </div>
+  <div class="services-table">
+    <div class="service-header">
+      <div class="service-header-grid">
+        <span>Product</span>
+        <span>Price</span>
+        <span>Delivery</span>
+        <span>Best For</span>
       </div>
-      <div class="step-card reveal reveal-d1">
-        <div class="step-number"><div class="step-num-badge">02</div> AI KAM KARTA HAI</div>
-        <div class="step-icon-wrap">⚡</div>
-        <h3>AI Munim turant update karta hai</h3>
-        <p>2 seconds mein stock update ho jaata hai. Kam items ko reorder alert milta hai. Expiry wale products flag ho jaate hain. ONDC listing automatically refresh ho jaati hai.</p>
-        <div class="step-sample">
-          <div class="step-sample-lang">Bhashini AI · Qwen-VL · Phi-3.5</div>
-          <div class="step-sample-text">Stock updated · Alert sent · ONDC refreshed ✓</div>
-        </div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalScan</div><div class="service-sub">5–7 page quick snapshot</div></div>
+      <div class="service-price">₹9,999</div>
+      <div class="service-time">48–72 hrs</div>
+      <div><span class="service-tag">Fast decisions</span></div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalBrief</div><div class="service-sub">10-page sector briefing</div></div>
+      <div class="service-price">₹14,999</div>
+      <div class="service-time">5 days</div>
+      <div><span class="service-tag">Initial exploration</span></div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalDeep</div><div class="service-sub">Full 20–25 page research report</div></div>
+      <div class="service-price">₹34,999</div>
+      <div class="service-time">7–10 days</div>
+      <div><span class="service-tag hot">Flagship</span></div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalPitch</div><div class="service-sub">Investor-ready market research</div></div>
+      <div class="service-price">₹44,999</div>
+      <div class="service-time">10–12 days</div>
+      <div><span class="service-tag">Fundraising</span></div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalEntry</div><div class="service-sub">Complete India entry package</div></div>
+      <div class="service-price">₹84,999</div>
+      <div class="service-time">15 days</div>
+      <div><span class="service-tag">Foreign companies</span></div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalWatch</div><div class="service-sub">Ongoing sector monitoring</div></div>
+      <div class="service-price">₹19,999/mo</div>
+      <div class="service-time">Monthly</div>
+      <div><span class="service-tag hot">Subscription</span></div>
+    </div>
+    <div class="service-row">
+      <div><div class="service-name">LokalOdisha Quarterly</div><div class="service-sub">Odisha-specific investment intelligence</div></div>
+      <div class="service-price">₹8,999/mo</div>
+      <div class="service-time">Quarterly</div>
+      <div><span class="service-tag hot">Odisha focus</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="who" style="padding:8rem 3rem">
+  <div class="section-tag">Who We Serve</div>
+  <div class="section-title">Built for the people<br>who <em>move India forward.</em></div>
+  <div class="who-grid">
+    <div class="who-card">
+      <div class="who-icon">01 — Startups</div>
+      <h3>Indian Startups (Seed to Series B)</h3>
+      <p>Geographic expansion, new product launch, fundraising preparation, competitive strategy. Our research is cheap insurance against expensive market mistakes.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">02 — Investors</div>
+      <h3>Angel Investors & Small VCs</h3>
+      <p>Sector landscape before writing checks, due diligence support, ongoing monitoring. A ₹30,000 research report is rounding error insurance against a ₹5Cr bad bet.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">03 — Global</div>
+      <h3>Foreign Companies Entering India</h3>
+      <p>India entry roadmap, regulatory framework, state selection, sector feasibility. Their cost of getting India wrong is millions. Our fee is genuinely trivial by comparison.</p>
+    </div>
+    <div class="who-card">
+      <div class="who-icon">04 — Policy</div>
+      <h3>NGOs & Policy Organizations</h3>
+      <p>Ground-level socioeconomic intelligence, policy impact analysis, sector-specific data. Institutional budgets, institutional-quality research delivered fast.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="odisha" id="odisha">
+  <div class="odisha-inner">
+    <div class="odisha-text">
+      <div class="section-tag">The Odisha Edge</div>
+      <div class="section-title">One of India's fastest-growing states — <em>almost no one is covering it.</em></div>
+      <p>Odisha is experiencing one of the most significant economic transformations of any Indian state. The firms in Delhi and Mumbai don't understand it. The ones abroad don't even know it exists.</p>
+      <p>LokalAI is the specialist intelligence provider for one of India's most significant and most underreported investment destinations. We're not theorizing from an office — we're from here.</p>
+      <a href="#services" class="btn-primary" style="margin-top:1rem;display:inline-block">Get Odisha Intelligence</a>
+    </div>
+    <div class="odisha-facts">
+      <div class="fact">
+        <div class="fact-dot"></div>
+        <p><strong>Massive industrial expansion</strong> — steel, mining, aluminum sectors growing at unprecedented pace with global investment flowing in</p>
       </div>
-      <div class="step-card reveal reveal-d2">
-        <div class="step-number"><div class="step-num-badge">03</div> AAPKA FAYDA</div>
-        <div class="step-icon-wrap">📈</div>
-        <h3>Bado bina mehnat ke</h3>
-        <p>Daily sales report, bank ke liye GST summary, tyohaar se pehle demand forecast, aur Paytm-PhonePe pe auto-listing — sab kuch automatic.</p>
-        <div class="step-sample">
-          <div class="step-sample-lang">Result</div>
-          <div class="step-sample-text">₹2L+ annual savings · 20% more sales</div>
-        </div>
+      <div class="fact">
+        <div class="fact-dot"></div>
+        <p><strong>₹10+ lakh crore</strong> in investment intent at Utkarsh Odisha summit — one of the largest state investment summits in Indian history</p>
+      </div>
+      <div class="fact">
+        <div class="fact-dot"></div>
+        <p><strong>Dhamra & Paradip ports</strong> becoming national logistics hubs, reshaping East India trade routes permanently</p>
+      </div>
+      <div class="fact">
+        <div class="fact-dot"></div>
+        <p><strong>Renewable energy</strong> investments accelerating as state positions itself as clean energy hub for Eastern India</p>
+      </div>
+      <div class="fact">
+        <div class="fact-dot"></div>
+        <p><strong>Kandhamal</strong> — India's largest turmeric and ginger belt, premium quality, massively underserved by formal market intelligence</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FEATURES ═══ -->
-<section class="features-section" id="features">
-  <div class="features-inner">
-    <div class="section-eyebrow">Features</div>
-    <h2 class="section-h">Aapke shop ko chahiye<br>sab kuch — AI Munim mein hai</h2>
-    <div class="features-grid">
+<div class="divider"></div>
 
-      <div class="feat-card dark span2 reveal">
-        <div>
-          <div class="feat-tag">Core · Bhashini powered</div>
-          <div class="feat-icon">🎙️</div>
-          <h3>Aapki bhasha mein samajhta hai</h3>
-          <p>India ke apne Bhashini API se powered — Odia, Hindi, Bengali, Telugu, Marathi — 22 languages mein. Pehla AI jo sach mein kirana ki boli bolata hai. Accent, dialect, local words sab samajhta hai.</p>
-        </div>
-        <div class="inv-widget">
-          <div class="inv-header">
-            <div class="inv-title">Live Inventory · Aaj</div>
-            <div class="inv-updated">Updated 2s ago ✓</div>
-          </div>
-          <div class="inv-row">
-            <div class="inv-name">Atta 50kg</div>
-            <div class="inv-bar-wrap"><div class="inv-bar good" style="width:52%"></div></div>
-            <div class="inv-badge badge-good">Stock OK</div>
-          </div>
-          <div class="inv-row">
-            <div class="inv-name">Toor Dal</div>
-            <div class="inv-bar-wrap"><div class="inv-bar low" style="width:18%"></div></div>
-            <div class="inv-badge badge-low">Reorder</div>
-          </div>
-          <div class="inv-row">
-            <div class="inv-name">Parle Biscuit</div>
-            <div class="inv-bar-wrap"><div class="inv-bar critical" style="width:6%"></div></div>
-            <div class="inv-badge badge-crit">Expiry Alert</div>
-          </div>
-          <div class="inv-row">
-            <div class="inv-name">Maggi 12pk</div>
-            <div class="inv-bar-wrap"><div class="inv-bar good" style="width:78%"></div></div>
-            <div class="inv-badge badge-good">Good</div>
-          </div>
-          <div class="inv-row">
-            <div class="inv-name">Sugar 5kg</div>
-            <div class="inv-bar-wrap"><div class="inv-bar low" style="width:22%"></div></div>
-            <div class="inv-badge badge-low">Reorder</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feat-card reveal">
-        <div class="feat-tag">Vision AI · Qwen-VL</div>
-        <div class="feat-icon">📷</div>
-        <h3>Shelf scan karo, stock mil jaata hai</h3>
-        <p>Apne phone se shop ka video lo. AI 60 seconds mein poora inventory list bana deta hai. Koi barcode scanner nahi chahiye. Koi data entry nahi.</p>
-      </div>
-
-      <div class="feat-card reveal reveal-d1">
-        <div class="feat-tag">Marketplace · ONDC</div>
-        <div class="feat-icon">🛒</div>
-        <h3>Paytm & PhonePe pe automatically dikho</h3>
-        <p>Har stock update ke saath ONDC pe listing auto-sync ho jaati hai. Aapka shop Paytm, PhonePe, Magicpin pe dikh jaata hai — bina ek button press kiye. Average 20% zyada sales.</p>
-      </div>
-
-      <div class="feat-card reveal">
-        <div class="feat-tag">Finance · GST ready</div>
-        <div class="feat-icon">📋</div>
-        <h3>Bank loan ke liye report ready</h3>
-        <p>AI Munim roz ki GST report aur cash flow summary automatic banata hai. Lendingkart ya NBFC mein le jaiye — loan approval easy ho jaata hai. Aapka business digitally proven.</p>
-      </div>
-
-      <div class="feat-card reveal reveal-d1">
-        <div class="feat-tag">Intelligence · Festival AI</div>
-        <div class="feat-icon">🎉</div>
-        <h3>Diwali se 2 hafte pehle alert</h3>
-        <p>AI Munim jaanta hai Diwali mein zyada tel aur cheeni bikti hai, Onam mein rice. Tyohaar se 2 hafte pehle batata hai kya stock karo — kabhi shelf khali nahi rahegi.</p>
-      </div>
-
+<section id="process" style="padding:8rem 3rem">
+  <div class="section-tag">How It Works</div>
+  <div class="section-title">Intelligence delivered<br>in <em>four steps.</em></div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01 — Brief</div>
+      <h3>Tell us your decision</h3>
+      <p>What are you trying to decide? Which market, sector, or geography? We scope the research around your actual business question.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02 — Research</div>
+      <h3>AI + ground intelligence</h3>
+      <p>We synthesize hundreds of sources — databases, policy documents, news, field knowledge — simultaneously. No generic templates.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03 — Report</div>
+      <h3>Actionable, not academic</h3>
+      <p>Every report answers: what does this data mean, what should you do, and what are the non-obvious things most people miss.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04 — Walkthrough</div>
+      <h3>15-min video briefing</h3>
+      <p>A recorded walkthrough of key findings and exactly what to do with them. No other research provider does this. Clients say it's the most valuable part.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ PRICING ═══ -->
-<section class="pricing-section" id="pricing">
-  <div class="pricing-inner">
-    <div class="section-eyebrow">Pricing</div>
-    <h2 class="section-h">Pehle free try karo.<br>Value dekho, tab pay karo.</h2>
-    <p class="section-p">Bhubaneswar ke pehle 50 shops ke liye 60 din bilkul free. Koi credit card nahi. Koi commitment nahi.</p>
-    <div class="pricing-grid">
+<div class="divider"></div>
 
-      <div class="price-card reveal">
-        <div class="price-label">Munim Lite</div>
-        <div class="price-name">Basic</div>
-        <div class="price-amount"><span class="price-rs">₹</span><span class="price-num">199</span><span class="price-per">/mahina</span></div>
-        <div class="price-desc">Chhote shops ke liye jo pehli baar digital track karna chahte hain</div>
-        <div class="price-divider"></div>
-        <ul class="feat-list">
-          <li><span class="feat-check">✓</span> Voice stock update (Odia/Hindi)</li>
-          <li><span class="feat-check">✓</span> WhatsApp se kaam karo</li>
-          <li><span class="feat-check">✓</span> Roz ki sales summary</li>
-          <li><span class="feat-check">✓</span> Expiry alerts</li>
-          <li><span class="feat-check">✓</span> 200 products tak</li>
-        </ul>
-        <a href="#waitlist" class="price-action pa-ghost">Free trial shuru karo</a>
-      </div>
-
-      <div class="price-card featured reveal reveal-d1">
-        <div class="featured-badge">Sabse popular</div>
-        <div class="price-label">Munim Pro</div>
-        <div class="price-name">Professional</div>
-        <div class="price-amount"><span class="price-rs" style="color:var(--gold)">₹</span><span class="price-num">499</span><span class="price-per">/mahina</span></div>
-        <div class="price-desc">Puri AI Munim experience — un kiranas ke liye jo seriously grow karna chahte hain</div>
-        <div class="price-divider"></div>
-        <ul class="feat-list">
-          <li><span class="feat-check">✓</span> Lite ka sab kuch</li>
-          <li><span class="feat-check">✓</span> ONDC auto-listing</li>
-          <li><span class="feat-check">✓</span> Shelf vision scan</li>
-          <li><span class="feat-check">✓</span> GST report bank ke liye</li>
-          <li><span class="feat-check">✓</span> Festival demand forecast</li>
-          <li><span class="feat-check">✓</span> Unlimited products</li>
-          <li><span class="feat-check">✓</span> Distributor auto-reorder</li>
-        </ul>
-        <a href="#waitlist" class="price-action pa-primary">Free trial shuru karo</a>
-      </div>
-
-      <div class="price-card reveal reveal-d2">
-        <div class="price-label">Munim Vyapaar</div>
-        <div class="price-name">Enterprise</div>
-        <div class="price-amount"><span class="price-rs">₹</span><span class="price-num">999</span><span class="price-per">/mahina</span></div>
-        <div class="price-desc">Bade shops, distributors, aur MSME chains ke liye full intelligence</div>
-        <div class="price-divider"></div>
-        <ul class="feat-list">
-          <li><span class="feat-check">✓</span> Pro ka sab kuch</li>
-          <li><span class="feat-check">✓</span> Multi-shop dashboard</li>
-          <li><span class="feat-check">✓</span> NBFC credit referral</li>
-          <li><span class="feat-check">✓</span> Brand shelf analytics</li>
-          <li><span class="feat-check">✓</span> Dedicated support</li>
-          <li><span class="feat-check">✓</span> Digilocker KYC</li>
-        </ul>
-        <a href="#waitlist" class="price-action pa-ghost">Hum se baat karo</a>
-      </div>
-
-    </div>
+<section class="cta-section" id="contact">
+  <div class="section-tag" style="justify-content:center;display:flex">Start Here</div>
+  <div class="section-title">The cost of bad intelligence<br>is always <em>higher.</em></div>
+  <p>Tell us what decision you're facing. We'll tell you which product fits and deliver intelligence that makes you confident.</p>
+  <div class="cta-actions">
+    <a href="mailto:hello@lokalai.in" class="btn-primary">Commission Research</a>
+    <a href="mailto:hello@lokalai.in" class="btn-ghost" style="color:var(--text-muted)">Send a Brief →</a>
   </div>
 </section>
 
-<!-- ═══ TESTIMONIALS ═══ -->
-<section class="testi-section">
-  <div class="testi-inner">
-    <div class="section-eyebrow">Early pilot · Real shops</div>
-    <h2 class="section-h">Bhubaneswar ke kiranas<br>keh rahe hain</h2>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <div class="testi-quote">"Pehle roz sochke pareshaan rehta tha — kya khatam ho gaya, kya bika. Ab AI Munim khud bata deta hai. Kaam aadha ho gaya aur galti bhi nahi hoti."</div>
-        <div class="testi-author">
-          <div class="testi-av">RK</div>
-          <div>
-            <div class="testi-name">Ramesh Kumar</div>
-            <div class="testi-role">Kirana owner, Unit-IV, Bhubaneswar</div>
-            <div class="pilot-pill">✓ Pilot participant</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal reveal-d1">
-        <div class="testi-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <div class="testi-quote">"Mu Odia re boluchi — inventory update ho jauchi. Ete easy kahnbele bujhini. Bank report bhi miluchi — loan miliba bahut easy heigala."</div>
-        <div class="testi-author">
-          <div class="testi-av">SP</div>
-          <div>
-            <div class="testi-name">Sunita Patra</div>
-            <div class="testi-role">General store, Shahid Nagar</div>
-            <div class="pilot-pill">✓ Pilot participant</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal reveal-d2">
-        <div class="testi-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <div class="testi-quote">"ONDC listing se teen naye customer aaye ek hi hafte mein. Bina kuch kiye dukan Paytm pe dikh rahi hai. Yeh toh truly magic hai bhai."</div>
-        <div class="testi-author">
-          <div class="testi-av">MN</div>
-          <div>
-            <div class="testi-name">Manoj Nayak</div>
-            <div class="testi-role">Provision store, Saheed Nagar</div>
-            <div class="pilot-pill">✓ Pilot participant</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ WAITLIST / CTA ═══ -->
-<section class="cta-section" id="waitlist">
-  <div class="cta-rangoli"></div>
-  <div class="cta-inner">
-    <div class="cta-eyebrow"><span class="live-dot"></span> 50 mein se sirf kuch spots bache hain</div>
-    <h2 class="cta-title">
-      Aapki dukan ka<br><span class="cta-accent">AI Munim</span><br>aaj se ready hai
-    </h2>
-    <p class="cta-sub">Bhubaneswar ke Unit-IV aur Shahid Nagar mein free 60-day pilot join karo. Koi payment nahi. Koi app download nahi. Bas WhatsApp aur aapki awaaz.</p>
-    <div class="waitlist-box">
-      <div class="waitlist-box-label">Apna WhatsApp number do — hum 24 ghante mein connect karenge</div>
-      <div class="waitlist-row">
-        <input type="tel" class="wl-input" id="wl-phone" placeholder="WhatsApp number (e.g. 98765 43210)" />
-        <button class="wl-btn" onclick="handleWL()">Pilot join karo →</button>
-      </div>
-      <div class="wl-note">Sirf Bhubaneswar shops abhi ke liye · Aapka data safe hai · Spam nahi karenge</div>
-    </div>
-    <div class="cta-badges">
-      <div class="cta-badge"><span class="cta-badge-dot"></span>Bhashini powered</div>
-      <div class="cta-badge"><span class="cta-badge-dot"></span>ONDC official partner</div>
-      <div class="cta-badge"><span class="cta-badge-dot"></span>Udyam MSME</div>
-      <div class="cta-badge"><span class="cta-badge-dot"></span>Digital India DPI</div>
-      <div class="cta-badge"><span class="cta-badge-dot"></span>IndiaAI applicant</div>
-      <div class="cta-badge"><span class="cta-badge-dot"></span>Made in Bhubaneswar</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ FOOTER ═══ -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand-logo">
-        <div class="footer-brand-mark">AI</div>
-        <span class="footer-brand-name">LOKAL AI</span>
-      </div>
-      <p class="footer-brand-desc">India ke 12 million kirana stores ke liye AI democratize kar rahe hain. Bhubaneswar mein bana, Bharat ke liye.</p>
-      <div class="footer-india">🇮🇳 &nbsp;Proudly made in Odisha</div>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Product</div>
-      <a href="#how-it-works">Kaise kaam karta hai</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#waitlist">Free pilot</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Technology</div>
-      <a href="#">Bhashini API</a>
-      <a href="#">ONDC Seller SDK</a>
-      <a href="#">Digilocker KYC</a>
-      <a href="#">IndiaAI Mission</a>
-    </div>
-    <div class="footer-col">
-      <div class="footer-col-title">Contact</div>
-      <a href="mailto:nimai@lokalai.in">nimai@lokalai.in</a>
-      <a href="#">WhatsApp karo</a>
-      <a href="#">Bhubaneswar, Odisha</a>
-      <a href="#">Udyam Certificate</a>
-    </div>
+  <div class="footer-logo">LokalAI.in</div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#odisha">Odisha Edge</a>
+    <a href="#contact">Contact</a>
   </div>
-  <div class="footer-bottom">
-    <p class="footer-copy">© 2026 LOKAL AI · Nimai Charan · Bhubaneswar · All rights reserved</p>
-    <div class="footer-links">
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Sitemap</a>
-    </div>
-  </div>
+  <div class="footer-copy">© 2025 LokalAI — Ground Intelligence for India</div>
 </footer>
 
-<!-- TOAST -->
-<div class="toast" id="toast">✓ &nbsp;Apply ho gaya! 24 ghante mein WhatsApp aayega.</div>
-
-<script>
-function handleWL() {
-  const inp = document.getElementById('wl-phone');
-  const val = inp.value.trim().replace(/\s/g,'');
-  if (val.length < 10) {
-    inp.style.borderColor = '#F87171';
-    inp.placeholder = 'Sahi number daalo...';
-    setTimeout(() => { inp.style.borderColor = ''; inp.placeholder = 'WhatsApp number (e.g. 98765 43210)'; }, 2000);
-    return;
-  }
-  const toast = document.getElementById('toast');
-  toast.classList.add('show');
-  inp.value = '';
-  setTimeout(() => toast.classList.remove('show'), 5000);
-}
-document.getElementById('wl-phone').addEventListener('keydown', e => { if(e.key === 'Enter') handleWL(); });
-
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-</script>
 </body>
 </html>
